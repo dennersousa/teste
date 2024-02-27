@@ -1,5 +1,12 @@
-// src/entidades/entidade.controller.ts
-import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+} from '@nestjs/common';
 import { EntidadeService } from './entidade.service';
 import { CreateEntidadeDto } from './dto/create-entidade.dto';
 import { UpdateEntidadeDto } from './dto/update-entidade.dto';
@@ -15,7 +22,7 @@ export class EntidadeController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<EntidadeEntity | undefined> {
+  async findOne(@Param('id') id: number): Promise<EntidadeEntity | undefined> {
     return await this.entidadeService.findOne(id);
   }
 
@@ -26,14 +33,14 @@ export class EntidadeController {
 
   @Put(':id')
   async update(
-    @Param('id') id: string,
+    @Param('id') id: number,
     @Body() dto: UpdateEntidadeDto,
   ): Promise<EntidadeEntity> {
     return await this.entidadeService.update(id, dto);
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: string): Promise<void> {
+  async delete(@Param('id') id: number): Promise<void> {
     return await this.entidadeService.delete(id);
   }
 }

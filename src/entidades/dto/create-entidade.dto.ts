@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsString, IsDate, IsBoolean, ArrayNotEmpty} from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  IsDate,
+  IsBoolean,
+  ArrayNotEmpty,
+} from 'class-validator';
 
 export class CreateEntidadeDto {
   @IsNotEmpty()
@@ -25,11 +31,13 @@ export class CreateEntidadeDto {
   ativa: boolean;
 
   @ArrayNotEmpty()
-  especialidadesMedicas: string[]; 
+  especialidadesMedicas: string[];
 
   constructor(especialidadesMedicas?: string[]) {
     if (!especialidadesMedicas || especialidadesMedicas.length === 0) {
-      throw new Error('Erro: Array de especialidades médicas deve ter pelo menos 1 elemento.');
+      throw new Error(
+        'Erro: Array de especialidades médicas deve ter pelo menos 1 elemento.',
+      );
     }
     this.especialidadesMedicas = especialidadesMedicas;
   }

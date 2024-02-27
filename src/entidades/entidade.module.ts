@@ -8,16 +8,10 @@ import { EntidadeService } from './entidade.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([EntidadeEntity, EspecialidadeMedicaEntity], {
-      type: 'sqlite', // Especificando o tipo de banco de dados
-      database: 'database.sqlite', // Nome do arquivo da base de dados
-      entities: ["./**/*.entity{.ts,.js}"],
-      synchronize: false, // Desativando a sincronização automática em produção
-    }),
+    TypeOrmModule.forFeature([EntidadeEntity, EspecialidadeMedicaEntity]),
   ],
   controllers: [EntidadeController],
   providers: [EntidadeService],
 })
 export class EntidadeModule {}
 export { Module };
-

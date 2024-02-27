@@ -1,10 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
 import { EspecialidadeMedicaEntity } from './especialidade-medica.entity';
 
-@Entity({ name: 'entidades' }) // Define o nome da tabela no banco de dados
+@Entity({ name: 'entidades' })
 export class EntidadeEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn('increment')
+  id: number;
 
   @Column({ nullable: false })
   razaoSocial: string;
@@ -25,10 +25,10 @@ export class EntidadeEntity {
   ativa: boolean;
 
   @ManyToMany(() => EspecialidadeMedicaEntity, {
-    eager: true, // Carrega as especialidades médicas relacionadas automaticamente
+    eager: true,
   })
   @JoinTable({
-    name: 'entidades_especialidades_medicas', // Define o nome da tabela de junção
+    name: 'entidades_especialidades_medicas',
     joinColumn: {
       name: 'entidade_id',
       referencedColumnName: 'id',
