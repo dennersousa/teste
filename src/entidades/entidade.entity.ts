@@ -3,7 +3,7 @@ import { EspecialidadeMedicaEntity } from './especialidade-medica.entity';
 
 @Entity({ name: 'entidades' })
 export class EntidadeEntity {
-  @PrimaryGeneratedColumn('increment')
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ nullable: false })
@@ -12,7 +12,7 @@ export class EntidadeEntity {
   @Column({ nullable: false })
   nomeFantasia: string;
 
-  @Column({ type: 'bigint', nullable: false, unique: true })
+  @Column({ type: 'varchar', length: 14, nullable: false, unique: true }) // Adjusted type for CNPJ
   cnpj: string;
 
   @Column({ nullable: false })
@@ -24,19 +24,11 @@ export class EntidadeEntity {
   @Column({ default: true })
   ativa: boolean;
 
-  @ManyToMany(() => EspecialidadeMedicaEntity, {
-    eager: true,
-  })
+  @ManyToMany(() => EspecialidadeMedicaEntity, (especialidadeMedica) => especialidadeMedica.entidades)
   @JoinTable({
     name: 'entidades_especialidades_medicas',
-    joinColumn: {
-      name: 'entidade_id',
-      referencedColumnName: 'id',
-    },
-    inverseJoinColumn: {
-      name: 'especialidade_medica_id',
-      referencedColumnName: 'id',
-    },
+    joinColumn: { name: 'entidade_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'especialidade_medica_id', referencedColumnName: 'id' },
   })
-  especialidadesMedicas: EspecialidadeMedicaEntity[];
+  especialidadesMedicas: EspecialidadeMedicaEntity[] | null;
 }

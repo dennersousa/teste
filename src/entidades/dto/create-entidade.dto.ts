@@ -4,6 +4,7 @@ import {
   IsDate,
   IsBoolean,
   ArrayNotEmpty,
+  IsArray,
 } from 'class-validator';
 
 export class CreateEntidadeDto {
@@ -31,6 +32,7 @@ export class CreateEntidadeDto {
   ativa: boolean;
 
   @ArrayNotEmpty()
+  @IsArray()
   especialidadesMedicas: string[];
 
   constructor(especialidadesMedicas?: string[]) {

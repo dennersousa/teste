@@ -12,6 +12,6 @@ import { EntidadeService } from './entidade.service';
   ],
   controllers: [EntidadeController],
   providers: [EntidadeService],
+  exports: [EntidadeService]
 })
 export class EntidadeModule {}
-export { Module };

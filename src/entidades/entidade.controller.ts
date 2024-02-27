@@ -1,3 +1,5 @@
+// entidade.controller.ts
+
 import {
   Controller,
   Get,
@@ -18,29 +20,26 @@ export class EntidadeController {
 
   @Get()
   async findAll(): Promise<EntidadeEntity[]> {
-    return await this.entidadeService.findAll();
+    return this.entidadeService.findAll();
   }
 
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<EntidadeEntity | undefined> {
-    return await this.entidadeService.findOne(id);
+    return this.entidadeService.findOne(id);
   }
 
   @Post()
-  async create(@Body() dto: CreateEntidadeDto): Promise<EntidadeEntity> {
-    return await this.entidadeService.create(dto);
+  async create(@Body() createEntidadeDto: CreateEntidadeDto): Promise<EntidadeEntity> {
+    return this.entidadeService.create(createEntidadeDto);
   }
 
   @Put(':id')
-  async update(
-    @Param('id') id: number,
-    @Body() dto: UpdateEntidadeDto,
-  ): Promise<EntidadeEntity> {
-    return await this.entidadeService.update(id, dto);
+  async update(@Param('id') id: number, @Body() updateEntidadeDto: UpdateEntidadeDto): Promise<EntidadeEntity> {
+    return this.entidadeService.update(id, updateEntidadeDto);
   }
 
   @Delete(':id')
   async delete(@Param('id') id: number): Promise<void> {
-    return await this.entidadeService.delete(id);
+    return this.entidadeService.delete(id);
   }
 }

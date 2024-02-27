@@ -8,6 +8,12 @@ import { EspecialidadeMedicaEntity } from './especialidade-medica.entity';
 
 @Injectable()
 export class EntidadeService {
+  remove(id: number) {
+    throw new Error('Method not implemented.');
+  }
+  deleteGuide(id: string): void | PromiseLike<void> {
+    throw new Error('Method not implemented.');
+  }
   constructor(
     @InjectRepository(EntidadeEntity)
     private readonly entidadeRepository: Repository<EntidadeEntity>,
@@ -67,12 +73,25 @@ export class EntidadeService {
    * @param id O ID da entidade.
    */
   async delete(id: number): Promise<void> {
-    const entity = await this.entidadeRepository.findOneBy({ id });
-    if (!entity) {
-      throw new Error(`Entidade com ID ${id} não existe`);
+    try {
+      const entity = await this.entidadeRepository.findOne({
+        where: {
+          id: id,
+        },
+      });
+  
+      if (!entity) {
+        throw new Error(`Entidade com ID ${id} não encontrada`);
+      }
+  
+      // Remover relacionamentos many-to-many antes de excluir a entidade
+      entity.especialidadesMedicas = [];
+  
+      await this.entidadeRepository.remove(entity);
+    } catch (error) {
+      // Tratar o erro de maneira adequada, pode ser útil logar o erro para análise
+      console.error(error);
+      throw new Error('Erro ao excluir a entidade');
     }
-    // Remover relacionamentos many-to-many antes de excluir a entidade
-    entity.especialidadesMedicas = [];
-    await this.entidadeRepository.delete(entity);
-  }
+  }  
 }
