@@ -1,0 +1,70 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 20px;
+  }
+  
+  h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+  
+  h2 {
+    font-size: 20px;
+    margin-top: 25px;
+  }
+  
+  .campos-obrigatorios, .campos-opcionais, .dados-entidade {
+    border: 2px solid #b8b8b8;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 5px;
+  }
+  
+  label {
+    display: block;
+    font-size: 16px;
+    color: #6e6b6b;
+  }
+  
+  input, select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+
+  #especialidades {
+    height: 100px;
+  }
+  
+  input[type="checkbox"] {
+    width: auto;
+    margin-right: 5px;
+  }
+  
+  button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #6b6b6b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #ccc;
+  }
+  
+  select option {
+    padding: 10px;
+  }
+  
+  select:focus {
+    outline: none;
+    border-color: #000;
+  }
+  

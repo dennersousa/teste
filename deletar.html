@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <!-- Meta tags para configuração da página -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excluir Cadastro</title>
+  <!-- Link para o arquivo de estilo externo -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Título da página -->
+  <h1>Excluir Cadastro</h1>
+
+  <!-- Seção para exibição dos dados da entidade -->
+  <section class="dados-entidade">
+    <!-- Input para inserção do ID -->
+    <div>
+      <label for="id">ID:</label>
+      <input type="text" id="id" name="id" required>
+    </div>
+
+    <!-- Botão para acionar a função de pesquisa -->
+    <div>
+      <button onclick="pesquisarCadastro()">Pesquisar</button>
+    </div>
+
+    <!-- Campos para exibição dos dados da entidade -->
+    <div>
+      Razão Social:
+      <span id="visualizacao_razao_social"></span>
+    </div>
+
+    <div>
+      Nome Fantasia:
+      <span id="visualizacao_nome_fantasia"></span>
+    </div>
+
+    <div>
+      CNPJ:
+      <span id="visualizacao_cnpj"></span>
+    </div>
+
+    <div>
+      Regional:
+      <span id="visualizacao_regional"></span>
+    </div>
+
+    <div>
+      Data de Inauguração:
+      <span id="visualizacao_data_inauguracao"></span>
+    </div>
+
+    <div>
+      Ativa:
+      <span id="visualizacao_ativa"></span>
+    </div>
+  </section>
+
+  <!-- Botão para deletar o cadastro -->
+  <div>
+    <button id="excluir" onclick="deletarCadastro()">Excluir Cadastro</button>
+  </div>
+
+  <!-- Controles de Navegação -->
+  <div>
+    <!-- Botões para redirecionar para outras páginas -->
+    <button onclick="window.location.href='formulario.html'">Formulário de Cadastro</button>
+    <button onclick="window.location.href='atualizacao.html'">Atualizar Cadastros</button>
+    <button type="button" id="visualizar" onclick="window.location.href='visualizacao.html'">Visualizar Cadastros</button>
+  </div>
+
+  <!-- Importação dos scripts JavaScript -->
+  <script src="script.js"></script>
+  <script>
+    // Função para pesquisar e exibir um cadastro pelo ID
+    function pesquisarCadastro() {
+      const id = document.getElementById('id').value;
+
+      // Enviar requisição GET para obter o cadastro pelo ID
+      fetch(`http://localhost:3000/entidades/${id}`)
+        .then(response => response.json())
+        .then(cadastro => {
+          // Exibir os dados do cadastro
+          document.getElementById("visualizacao_razao_social").textContent = cadastro.razaoSocial;
+          document.getElementById("visualizacao_nome_fantasia").textContent = cadastro.nomeFantasia;
+          document.getElementById("visualizacao_cnpj").textContent = cadastro.cnpj;
+          document.getElementById("visualizacao_regional").textContent = cadastro.regional;
+          document.getElementById("visualizacao_data_inauguracao").textContent = cadastro.dataInauguracao;
+          document.getElementById("visualizacao_ativa").textContent = cadastro.ativa ? "Sim" : "Não";
+        })
+        .catch(error => console.error('Erro ao buscar cadastro:', error));
+    }
+
+    // Função para deletar o cadastro pelo ID
+    function deletarCadastro() {
+      const id = document.getElementById('id').value;
+
+      // Enviar requisição DELETE para excluir o cadastro pelo ID
+      fetch(`http://localhost:3000/entidades/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Request-Headers': 'Content-Type, Authorization',
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Resposta do servidor após exclusão:', data);
+        alert('Cadastro excluído com sucesso!');
+        // Redirecionar para a página desejada após a exclusão
+        window.location.href = 'pagina_de_redirecionamento.html';
+      })
+      .catch(error => console.error('Erro ao excluir cadastro:', error));
+    }
+  </script>
+
+</body>
+</html>

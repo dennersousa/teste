@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <!-- Configurações meta para a página -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Título da página e link para o estilo CSS -->
+  <title>Formulário</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Formulário de cadastro -->
+  <form id="formulario-entidade" action="#" method="post">
+
+    <!-- Título do formulário -->
+    <h1>Formulário de Cadastro</h1>
+
+    <!-- Seção para campos obrigatórios -->
+    <section class="campos-obrigatorios">
+
+      <!-- Campo Razão Social -->
+      <div class="form-group">
+        <label for="razao_social">Razão Social:</label>
+        <input type="text" id="razao_social" name="razao_social" required>
+      </div>
+
+      <!-- Campo Nome Fantasia -->
+      <div class="form-group">
+        <label for="nome_fantasia">Nome Fantasia:</label>
+        <input type="text" id="nome_fantasia" name="nome_fantasia" required>
+      </div>
+
+      <!-- Campo CNPJ -->
+      <div class="form-group">
+        <label for="cnpj">CNPJ:</label>
+        <input type="text" id="cnpj" name="cnpj" required>
+      </div>
+
+      <!-- Campo Regional -->
+      <div class="form-group">
+        <label for="regional">Regional:</label>
+        <select id="regional" name="regional" required>
+            <!-- Opções para escolha da regional -->
+            <!-- ... (opções omitidas para brevidade) ... -->
+        </select>
+      </div>
+
+      <!-- Campo Data de Inauguração -->
+      <div class="form-group">
+        <label for="data_inauguracao">Data de Inauguração:</label>
+        <input type="date" id="data_inauguracao" name="data_inauguracao" required>
+      </div>
+
+      <!-- Campo Ativa (checkbox) -->
+      <div class="form-group">
+        <label for="ativa">Ativa:</label>
+        <input type="checkbox" id="ativa" name="ativa">
+      </div>
+
+      <!-- Campo Especialidades Médicas Atendidas -->
+      <div class="form-group">
+        <label for="especialidades">Especialidades Médicas Atendidas:</label>
+        <select id="especialidades" name="especialidades" multiple>
+            <!-- Opções para escolha de especialidades -->
+            <!-- ... (opções omitidas para brevidade) ... -->
+        </select>
+      </div>
+
+    </section>
+
+    <!-- Botão de envio do formulário -->
+    <button type="submit" id="enviar">Cadastrar</button>
+    <!-- Botões de navegação -->
+    <div>
+      <button type="button" id="visualizar" onclick="window.location.href='visualizacao.html'">Visualizar Cadastros</button>
+      <button onclick="window.location.href='atualizacao.html'">Atualizar Cadastros</button>
+    </div>
+    <!-- Botão para deletar cadastros -->
+    <div>
+      <button onclick="window.location.href='deletar.html'">Deletar Cadastros</button>
+    </div>
+
+  </form>
+
+  <!-- Importação do script JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+</html>

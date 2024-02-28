@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <!-- Configurações meta para a página -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Título da página e link para o estilo CSS -->
+  <title>Visualização de Cadastro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Título da página -->
+  <h1>Visualização de Cadastro</h1>
+
+  <!-- Seção para exibir os dados da entidade -->
+  <section class="dados-entidade">
+    <!-- Campos para exibição dos dados da entidade -->
+    <div>
+      <strong>ID:</strong>
+      <span id="visualizacao_id"></span>
+    </div>
+
+    <div>
+      <strong>Razão Social:</strong>
+      <span id="visualizacao_razao_social"></span>
+    </div>
+
+    <div>
+      <strong>Nome Fantasia:</strong>
+      <span id="visualizacao_nome_fantasia"></span>
+    </div>
+
+    <div>
+      <strong>CNPJ:</strong>
+      <span id="visualizacao_cnpj"></span>
+    </div>
+
+    <div>
+      <strong>Regional:</strong>
+      <span id="visualizacao_regional"></span>
+    </div>
+
+    <div>
+      <strong>Data de Inauguração:</strong>
+      <span id="visualizacao_data_inauguracao"></span>
+    </div>
+
+    <div>
+      <strong>Ativa:</strong>
+      <span id="visualizacao_ativa"></span>
+    </div>
+
+  </section>
+
+  <!-- Controles de Navegação -->
+  <div>
+    <p><strong>Cadastro</strong>
+        <span id="indice_cadastro"></span>
+    </p>
+  </div>
+  <div>
+    <!-- Botões para navegar entre cadastros -->
+    <button onclick="mostrarCadastroAnterior()">Anterior</button> 
+    <button onclick="mostrarProximoCadastro()">Próximo</button>
+  </div>
+  <div>
+    <!-- Botões para redirecionar para outras páginas -->
+    <button onclick="window.location.href='formulario.html'">Formulário de Cadastro</button>
+    <button onclick="window.location.href='atualizacao.html'">Atualizar Cadastros</button>
+    <button onclick="window.location.href='deletar.html'">Deletar Cadastros</button>
+  </div>
+  
+
+  <!-- Importação do script JavaScript -->
+  <script src="script.js"></script>
+  <script>
+    // Variáveis globais para armazenar os cadastros e o índice atual
+    let cadastros = [];
+    let indiceAtual = 0;
+
+    // Função para exibir um cadastro com base no índice
+    function exibirCadastro(indice) {
+      const cadastro = cadastros[indice];
+
+      document.getElementById("visualizacao_id").textContent = cadastro.id;
+      document.getElementById("visualizacao_razao_social").textContent = cadastro.razaoSocial;
+      document.getElementById("visualizacao_nome_fantasia").textContent = cadastro.nomeFantasia;
+      document.getElementById("visualizacao_cnpj").textContent = cadastro.cnpj;
+      document.getElementById("visualizacao_regional").textContent = cadastro.regional;
+      document.getElementById("visualizacao_data_inauguracao").textContent = cadastro.dataInauguracao;
+      document.getElementById("visualizacao_ativa").textContent = cadastro.ativa ? "Sim" : "Não";
+
+      document.getElementById("indice_cadastro").textContent = `${indice + 1}/${cadastros.length}`;
+    }
+
+    // Função para mostrar o cadastro anterior
+    function mostrarCadastroAnterior() {
+      if (indiceAtual > 0) {
+        indiceAtual--;
+        exibirCadastro(indiceAtual);
+      }
+    }
+
+    // Função para mostrar o próximo cadastro
+    function mostrarProximoCadastro() {
+      if (indiceAtual < cadastros.length - 1) {
+        indiceAtual++;
+        exibirCadastro(indiceAtual);
+      }
+    }
+
+    // Carregar os cadastros ao carregar a página
+    fetch('http://localhost:3000/entidades')
+      .then(response => response.json())
+      .then(data => {
+        cadastros = data;
+        if (cadastros.length > 0) {
+          exibirCadastro(indiceAtual);
+        }
+      })
+      .catch(error => console.error('Erro ao buscar cadastros:', error));
+  </script>
+
+</body>
+</html>

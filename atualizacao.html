@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <!-- Configurações meta para a página -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Título da página e link para o estilo CSS -->
+  <title>Atualização de Cadastro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Título da página -->
+  <h1>Atualização de Cadastro</h1>
+
+  <!-- Formulário de atualização de cadastro -->
+  <form id="formulario-atualizacao" action="#" method="post">
+
+    <!-- Seção para campos da entidade -->
+    <section class="dados-entidade">
+
+      <!-- Campo ID -->
+      <div>
+        <label for="id">Id:</label>
+        <input type="text" id="id" name="id" required>
+      </div>
+
+      <!-- Campo Razão Social -->
+      <div>
+        <label for="razao_social">Razão Social:</label>
+        <input type="text" id="razao_social" name="razao_social" required>
+      </div>
+
+      <!-- Campo Nome Fantasia -->
+      <div>
+        <label for="nome_fantasia">Nome Fantasia:</label>
+        <input type="text" id="nome_fantasia" name="nome_fantasia" required>
+      </div>
+
+      <!-- Campo CNPJ -->
+      <div>
+        <label for="cnpj">CNPJ:</label>
+        <input type="text" id="cnpj" name="cnpj" required>
+      </div>
+
+      <!-- Campo Regional -->
+      <div>
+        <label for="regional">Regional:</label>
+        <select id="regional" name="regional" required>
+          <!-- Opções para escolha da regional -->
+          <!-- ... (opções omitidas para brevidade) ... -->
+        </select>
+      </div>
+
+      <!-- Campo Data de Inauguração -->
+      <div>
+        <label for="data_inauguracao">Data de Inauguração:</label>
+        <input type="date" id="data_inauguracao" name="data_inauguracao" required>
+      </div>
+
+      <!-- Campo Ativa (checkbox) -->
+      <div>
+        <label for="ativa">Ativa:</label>
+        <input type="checkbox" id="ativa" name="ativa">
+      </div>
+
+      <!-- Campo Especialidades Médicas Atendidas -->
+      <div>
+        <label for="especialidades">Especialidades Médicas Atendidas:</label>
+        <select id="especialidades" name="especialidades" multiple>
+          <!-- Opções para escolha de especialidades -->
+          <!-- ... (opções omitidas para brevidade) ... -->
+        </select>
+      </div>
+
+    </section>
+
+    <!-- Botão de envio para atualizar cadastro -->
+    <button type="submit" id="atualizar">Atualizar Cadastro</button>
+    <!-- Botões de navegação -->
+    <div>
+      <button onclick="window.location.href='visualizacao.html'">Visualizar Cadastros</button>
+      <button onclick="window.location.href='formulario.html'">Novo Cadastro</button>
+      <button onclick="window.location.href='deletar.html'">Deletar Cadastros</button>
+    </div>
+  </form>
+
+  <!-- Importação do script JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+</html>
