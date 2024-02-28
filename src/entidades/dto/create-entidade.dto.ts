@@ -5,6 +5,8 @@ import {
   IsBoolean,
   ArrayNotEmpty,
   IsArray,
+  Max,
+  Length,
 } from 'class-validator';
 
 export class CreateEntidadeDto {
@@ -18,6 +20,7 @@ export class CreateEntidadeDto {
 
   @IsNotEmpty()
   @IsString()
+  @Length(14, 14, { message: 'A string deve conter exatamente 14 letras.' })
   cnpj: string;
 
   @IsNotEmpty()

@@ -1,4 +1,4 @@
-import { IsOptional, IsString, IsDate, IsBoolean, ArrayNotEmpty } from 'class-validator';
+import { IsOptional, IsString, IsDate, IsBoolean, ArrayNotEmpty, Length } from 'class-validator';
 
 export class UpdateEntidadeDto {
   @IsOptional()
@@ -11,7 +11,8 @@ export class UpdateEntidadeDto {
 
   @IsOptional()
   @IsString()
-  cnpj?: string;
+  @Length(14, 14, { message: 'A string deve conter exatamente 14 letras.' })
+  cnpj: string;
 
   @IsOptional()
   @IsString()

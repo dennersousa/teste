@@ -1,5 +1,3 @@
-// entidade.controller.ts
-
 import {
   Controller,
   Get,
